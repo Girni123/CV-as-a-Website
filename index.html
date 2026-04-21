@@ -231,11 +231,22 @@
     letter-spacing: -2px;
     text-transform: uppercase;
   }
-  .hero-name .hl {
-    background: linear-gradient(180deg, transparent 55%, var(--accent) 55%, var(--accent) 90%, transparent 90%);
-    padding: 0 4px;
+  /* HIGHLIGHT — full-height green block with subtle dot texture (PDF feel),
+     so the dark text stays readable on the dark page. */
+  .hl {
+    background-color: var(--accent);
+    background-image:
+      radial-gradient(circle at center, rgba(0,0,0,0.18) 1.1px, transparent 1.4px),
+      linear-gradient(180deg, var(--accent), #B8E600);
+    background-size: 6px 6px, 100% 100%;
+    background-position: 0 0, 0 0;
     color: #000;
+    padding: 0 8px 2px;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
+  .hero-name .hl { padding: 0 12px 4px; border-radius: 6px; }
 
   .hero-role {
     font-size: clamp(16px, 2.2vw, 19px);
@@ -353,11 +364,7 @@
     letter-spacing: -1px;
     line-height: 1.1;
   }
-  .section-title .hl {
-    background: linear-gradient(180deg, transparent 55%, var(--accent) 55%, var(--accent) 90%, transparent 90%);
-    color: #000;
-    padding: 0 4px;
-  }
+  /* .hl handled globally above */
 
   /* ── ABOUT ── */
   .about-text {
@@ -368,6 +375,41 @@
   }
   .about-text strong { color: var(--text); font-weight: 600; }
   .about-text + .about-text { margin-top: 16px; }
+
+  /* Collapsible second paragraph */
+  .about-more {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.45s ease, opacity 0.4s ease, margin 0.3s ease;
+  }
+  .about.is-open .about-more {
+    max-height: 800px;
+    opacity: 1;
+  }
+  .about-toggle {
+    margin-top: 18px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .about-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .about-toggle .chev { transition: transform 0.3s ease; display: inline-block; }
+  .about.is-open .about-toggle .chev { transform: rotate(180deg); }
+  .about-toggle .lbl-more { display: inline; }
+  .about-toggle .lbl-less { display: none; }
+  .about.is-open .about-toggle .lbl-more { display: none; }
+  .about.is-open .about-toggle .lbl-less { display: inline; }
 
   /* ── PROJECTS / EXPERIENCE CARDS ── */
   .cards-grid {
@@ -475,21 +517,24 @@
     gap: 10px;
   }
   .exp-bullets li {
-    display: grid;
-    grid-template-columns: 14px 1fr;
-    gap: 10px;
+    position: relative;
+    padding-left: 22px;
     font-size: 14.5px;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--text-soft);
+    overflow-wrap: anywhere;
   }
   .exp-bullets li::before {
     content: '';
+    position: absolute;
+    left: 4px;
+    top: 10px;
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: var(--accent);
-    margin-top: 9px;
   }
+  .exp-bullets li strong { color: var(--text); font-weight: 600; }
 
   .exp-subhead {
     font-size: 13px;
@@ -620,6 +665,12 @@
     transition: border-color 0.2s, transform 0.2s;
   }
   .info-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  a.info-card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  a.info-card-link:hover { border-color: var(--accent); }
+  a.info-card-link .info-card-meta { color: var(--accent); }
   .info-card-title {
     font-size: 18px;
     font-weight: 700;
@@ -934,7 +985,7 @@
   </header>
 
   <!-- ───────── ABOUT ───────── -->
-  <section id="about" class="reveal">
+  <section id="about" class="reveal about">
     <div class="section-head">
       <span class="section-eyebrow">Über mich</span>
       <h2 class="section-title">Vom Konzept bis zum <span class="hl">Launch</span> — End-to-End.</h2>
@@ -942,9 +993,18 @@
     <p class="about-text">
       Mein Studium <strong>Mediendesign & Management</strong> habe ich mit Fokus auf das Management abgeschlossen. Heute arbeite ich als <strong>Produktmanager bei der REWE Group</strong> für die Bio-Eigenmarken-Range — und richte meinen Weg konsequent in Richtung <strong>Tech-Produktmanagement</strong> aus, weil mich digitale Produkte und Systeme deutlich stärker fesseln.
     </p>
-    <p class="about-text">
-      Den kreativen und visuellen Background nutze ich heute als Werkzeug: Ich verstehe, <strong>was Nutzer:innen sehen wollen</strong>, wie Produkte sich anfühlen müssen, und wie man eine klare Markenidentität baut. Parallel habe ich aus eigener Initiative ein vollständiges <strong>NFC-Authentifizierungssystem</strong> mit AWS, Lambda, DynamoDB und AES-Kryptografie entwickelt — und zwei native Apps für iOS und macOS, von Konzept bis Code. Wenn ich eine Vision habe, baue ich sie auch.
-    </p>
+    <div class="about-more">
+      <p class="about-text">
+        Den kreativen und visuellen Background nutze ich heute als Werkzeug: Ich verstehe, <strong>was Nutzer:innen sehen wollen</strong>, wie Produkte sich anfühlen müssen, und wie man eine klare Markenidentität baut. Parallel habe ich aus eigener Initiative ein vollständiges <strong>NFC-Authentifizierungssystem</strong> mit AWS, Lambda, DynamoDB und AES-Kryptografie entwickelt — und zwei native Apps für iOS und macOS, von Konzept bis Code. Wenn ich eine Vision habe, baue ich sie auch.
+      </p>
+    </div>
+    <button class="about-toggle" type="button" id="aboutToggle" aria-expanded="false" aria-controls="aboutMore">
+      <span class="lbl-more">Weiterlesen</span>
+      <span class="lbl-less">Einklappen</span>
+      <span class="chev">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
   </section>
 
   <!-- ───────── PRODUCT & TECH EXPERIENCE ───────── -->
@@ -1181,12 +1241,12 @@
         <div class="info-card-org"><strong>Christ's Hope International / SDI International</strong></div>
         <p class="info-card-text">Einsätze in Namibia, Südafrika und New Orleans: Reparaturen, Vor-Ort-Support und Wiederaufbau nach Schäden.</p>
       </div>
-      <div class="info-card">
-        <span class="info-card-meta">Auswahl</span>
-        <h3 class="info-card-title">Bachelorarbeit ausgezeichnet</h3>
-        <div class="info-card-org"><strong>Note 1,0</strong> — Symbiose physischer Mode & digitaler Innovation</div>
-        <p class="info-card-text">Direkter Vorläufer meines NFC-Authentifizierungssystems: Forschung zu mediengestützter Produkt-Interaktion mündete in ein produktiv lauffähiges System.</p>
-      </div>
+      <a class="info-card info-card-link" href="https://girnstein-david.framer.website/volunteer" target="_blank" rel="noopener">
+        <span class="info-card-meta">Mehr Volunteer-Projekte ↗</span>
+        <h3 class="info-card-title">Volunteer Portfolio</h3>
+        <div class="info-card-org"><strong>girnstein-david.framer.website</strong> · weitere Einsätze & Projekte</div>
+        <p class="info-card-text">Detaillierte Übersicht meiner Volunteer-Arbeit mit Bildern, Hintergründen und Beiträgen — direkt im Portfolio.</p>
+      </a>
     </div>
   </section>
 
@@ -1241,6 +1301,7 @@
         <a href="https://girnstein.studio" target="_blank" rel="noopener">girnstein.studio</a>
         <a href="https://www.linkedin.com/in/davidgirnstein/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:david@girnstein.studio">E-Mail</a>
+        <a href="impressum.html">Impressum</a>
       </div>
     </div>
   </footer>
@@ -1302,6 +1363,16 @@
       head.parentElement.classList.toggle('is-open');
     });
   });
+
+  // ── About section: toggle second paragraph ──
+  const aboutSection = document.getElementById('about');
+  const aboutToggle = document.getElementById('aboutToggle');
+  if (aboutSection && aboutToggle) {
+    aboutToggle.addEventListener('click', () => {
+      const open = aboutSection.classList.toggle('is-open');
+      aboutToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 
   // ── Contact modal ──
   const modal = document.getElementById('contactModal');

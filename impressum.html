@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — David Girnstein</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --accent: #CDFF00;
+    --bg: #0A0A0A;
+    --card: #141414;
+    --border: #1F1F1F;
+    --text: #FFFFFF;
+    --text-muted: #888888;
+    --text-soft: #BBBBBB;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  ::selection { background: var(--accent); color: #000; }
+  a { color: var(--accent); }
+  a:hover { text-decoration: underline; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 22px 80px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.2px;
+  }
+  .back:hover { color: var(--accent); text-decoration: none; }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .hl {
+    background-color: var(--accent);
+    background-image:
+      radial-gradient(circle at center, rgba(0,0,0,0.18) 1.1px, transparent 1.4px),
+      linear-gradient(180deg, var(--accent), #B8E600);
+    background-size: 6px 6px, 100% 100%;
+    color: #000;
+    padding: 0 10px 3px;
+    border-radius: 5px;
+  }
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  p, li { color: var(--text-soft); font-size: 15px; }
+  p + p { margin-top: 10px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-top: 16px;
+  }
+  .card p { margin-top: 0; }
+
+  .kv { display: grid; grid-template-columns: 120px 1fr; gap: 4px 16px; }
+  .kv dt { color: var(--text-muted); font-size: 14px; }
+  .kv dd { color: var(--text); font-size: 15px; font-weight: 500; }
+  @media (max-width: 520px) { .kv { grid-template-columns: 1fr; } .kv dt { margin-top: 8px; } }
+
+  .note {
+    margin-top: 28px;
+    padding: 14px 18px;
+    background: rgba(205,255,0,0.06);
+    border: 1px dashed rgba(205,255,0,0.25);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .note strong { color: var(--accent); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Zurück
+  </a>
+
+  <h1><span class="hl">Impressum</span></h1>
+  <p class="subtitle">Angaben gemäß § 5 TMG / § 18 Abs. 2 MStV.</p>
+
+  <div class="card">
+    <h2>Anbieter</h2>
+    <dl class="kv">
+      <dt>Name</dt><dd>David Girnstein</dd>
+      <dt>Anschrift</dt><dd>[Straße, Hausnummer]<br>[PLZ Ort]<br>Deutschland</dd>
+      <dt>E-Mail</dt><dd><a href="mailto:david@girnstein.studio">david@girnstein.studio</a></dd>
+      <dt>Telefon</dt><dd><a href="tel:+491722967986">+49 172 2967986</a></dd>
+    </dl>
+  </div>
+
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <p>David Girnstein (Anschrift wie oben)</p>
+
+  <h2>Haftungsausschluss</h2>
+  <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+  <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.</p>
+
+  <h2>Haftung für Links</h2>
+  <p>Diese Seite enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+
+  <h2>Urheberrecht</h2>
+  <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+
+  <h2>Hosting & Datenschutz (Kurzfassung)</h2>
+  <p>Diese Seite wird statisch über <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) ausgeliefert. Beim Aufruf werden technisch notwendige Verbindungsdaten (u. a. IP-Adresse, Zeitstempel, User-Agent) durch GitHub verarbeitet. Weitere Informationen: <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
+  <p>Zusätzlich werden Schriftarten über <strong>Google Fonts</strong> geladen (Google Ireland Limited). Beim Abruf wird eine Verbindung zu Google-Servern aufgebaut und die IP-Adresse übertragen.</p>
+  <p>Auf dieser Seite werden keine eigenen Analyse-, Tracking- oder Werbe-Cookies gesetzt. Eine serverseitige Speicherung personenbezogener Daten durch mich erfolgt nicht.</p>
+
+  <div class="note">
+    <strong>TODO vor Live-Schaltung:</strong> Postanschrift oben (Straße / PLZ / Ort) ergänzen. Das ist gesetzlich vorgeschrieben, sobald die Seite öffentlich erreichbar ist. Wenn du deine Privatadresse nicht angeben willst, nutze eine ladungsfähige Postanschrift (z. B. Postfach oder Geschäftsadresse).
+  </div>
+</main>
+</body>
+</html>

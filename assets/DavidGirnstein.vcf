@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Girnstein;David;;;
+FN:David Girnstein
+TITLE:Product Manager
+TEL;TYPE=CELL,VOICE:+49 172 2967986
+EMAIL;TYPE=WORK,INTERNET:david@girnstein.studio
+EMAIL;TYPE=INTERNET:girn.davi01@gmail.com
+URL;TYPE=Portfolio:https://girnstein.studio
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/davidgirnstein/
+ADR;TYPE=WORK:;;;Köln;;;Deutschland
+NOTE:Product Manager mit Fokus auf Technologie und digitale Innovation.
+END:VCARD

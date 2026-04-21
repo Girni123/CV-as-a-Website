@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Girnstein — Product Manager · Tech & Digital Innovation</title>
+<meta name="description" content="David Girnstein — Product Manager mit Fokus auf Technologie. NFC-Authentifizierung, iOS/macOS Apps, End-to-End Produktentwicklung.">
+
+<meta property="og:title" content="David Girnstein — Product Manager">
+<meta property="og:description" content="Product Manager mit Fokus auf Technologie. NFC-Authentifizierung, iOS/macOS Apps, End-to-End Produktentwicklung.">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="assets/profile.jpg">
+<meta name="theme-color" content="#0A0A0A">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --accent: #CDFF00;
+    --accent-soft: rgba(205,255,0,0.15);
+    --bg: #0A0A0A;
+    --bg-2: #0F0F0F;
+    --card: #141414;
+    --card-hover: #1A1A1A;
+    --border: #1F1F1F;
+    --border-strong: #2A2A2A;
+    --text: #FFFFFF;
+    --text-muted: #888888;
+    --text-soft: #BBBBBB;
+    --radius: 18px;
+    --radius-sm: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+  }
+
+  ::selection { background: var(--accent); color: #000; }
+
+  /* ── BACKGROUND DECOR ── */
+  .bg-decor {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .bg-decor::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(205,255,0,0.10), transparent 70%);
+    filter: blur(40px);
+  }
+  .bg-decor::after {
+    content: '';
+    position: absolute;
+    bottom: 30%;
+    left: -250px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(205,255,0,0.05), transparent 70%);
+    filter: blur(50px);
+  }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* ── TOP BAR (CV version switcher — hidden by default) ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .topbar-brand .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  /* Version switcher: HIDDEN by default. Set to flex once 2+ versions exist. */
+  .version-switcher {
+    display: none;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px;
+  }
+  .version-switcher.is-enabled { display: flex; }
+  .version-pill {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  .version-pill.active {
+    background: var(--accent);
+    color: #000;
+  }
+  .version-pill:hover:not(.active) { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 60px 0 40px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 36px 0 24px;
+      gap: 28px;
+      text-align: left;
+    }
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+  }
+  @media (max-width: 760px) {
+    .hero-photo-wrap {
+      max-width: 220px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+    }
+  }
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transform: scale(1.02);
+    transition: transform 0.6s ease;
+  }
+  .hero-photo-wrap:hover .hero-photo { transform: scale(1.06); }
+
+  .hero-photo-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--accent), transparent 60%);
+    z-index: -1;
+    opacity: 0.6;
+    filter: blur(12px);
+  }
+
+  .hero-content { display: flex; flex-direction: column; gap: 22px; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    width: fit-content;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-size: clamp(44px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+  }
+  .hero-name .hl {
+    background: linear-gradient(180deg, transparent 55%, var(--accent) 55%, var(--accent) 90%, transparent 90%);
+    padding: 0 4px;
+    color: #000;
+  }
+
+  .hero-role {
+    font-size: clamp(16px, 2.2vw, 19px);
+    color: var(--text-soft);
+    max-width: 560px;
+  }
+  .hero-role strong { color: var(--text); font-weight: 600; }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 20px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    letter-spacing: 0.2px;
+    line-height: 1;
+  }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 0 0 rgba(205,255,0,0.5);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px rgba(205,255,0,0.45);
+  }
+  .btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-soft);
+    border-color: var(--border-strong);
+  }
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  /* ── QUICK STATS ── */
+  .stats {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 760px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .stat-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 64px 0; position: relative; }
+  @media (max-width: 760px) { section { padding: 48px 0; } }
+
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .section-title .hl {
+    background: linear-gradient(180deg, transparent 55%, var(--accent) 55%, var(--accent) 90%, transparent 90%);
+    color: #000;
+    padding: 0 4px;
+  }
+
+  /* ── ABOUT ── */
+  .about-text {
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 760px;
+  }
+  .about-text strong { color: var(--text); font-weight: 600; }
+  .about-text + .about-text { margin-top: 16px; }
+
+  /* ── PROJECTS / EXPERIENCE CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .exp-card:hover { border-color: var(--border-strong); }
+  .exp-card.is-open { border-color: var(--accent); }
+
+  .exp-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 22px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  @media (max-width: 600px) { .exp-head { padding: 18px 20px; } }
+
+  .exp-head-main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .exp-tag {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .exp-title {
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+  }
+  .exp-meta {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin-top: 2px;
+  }
+  .exp-meta .sep { opacity: 0.5; }
+  .exp-meta strong { color: var(--text-soft); font-weight: 500; }
+
+  .exp-toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+  .exp-toggle svg { transition: transform 0.3s ease; }
+  .exp-card.is-open .exp-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+  .exp-card.is-open .exp-toggle svg { transform: rotate(180deg); }
+
+  .exp-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .exp-card.is-open .exp-body { max-height: 1200px; }
+
+  .exp-body-inner {
+    padding: 0 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    margin-top: 0;
+  }
+  @media (max-width: 600px) { .exp-body-inner { padding: 18px 20px 22px; } }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .exp-bullets li {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-soft);
+  }
+  .exp-bullets li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 9px;
+  }
+
+  .exp-subhead {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+  }
+
+  /* ── TIMELINE (additional experience) ── */
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .timeline-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 18px;
+    transition: border-color 0.2s;
+  }
+  .timeline-item:hover { border-color: var(--border-strong); }
+  @media (max-width: 700px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
+  }
+  .timeline-date {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.3px;
+    padding-top: 1px;
+  }
+  .timeline-body { display: flex; flex-direction: column; gap: 6px; }
+  .timeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .timeline-org {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-top: -2px;
+  }
+  .timeline-org strong { color: var(--text-soft); font-weight: 500; }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    margin-top: 4px;
+  }
+  .timeline-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent);
+    word-break: break-all;
+  }
+  .timeline-link:hover { background: var(--accent-soft); }
+
+  /* ── SKILLS ── */
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
+  .skill-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .skill-block h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag {
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    color: var(--text-soft);
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .skill-tag.tag-strong {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: rgba(205,255,0,0.25);
+    font-weight: 600;
+  }
+
+  /* ── EDU + LEADERSHIP ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .info-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .info-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .info-card-org {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .info-card-org strong { color: var(--text-soft); font-weight: 500; }
+  .info-card-text {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    margin-top: 4px;
+  }
+  .info-card-meta {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── CERTIFICATES ── */
+  .certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .cert {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    transition: all 0.2s;
+  }
+  .cert:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-name { font-size: 14px; font-weight: 600; line-height: 1.35; }
+  .cert-issuer { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── CONTACT ── */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--card), var(--bg-2));
+    border: 1px solid var(--border-strong);
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(205,255,0,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .contact-cta h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .contact-cta p {
+    color: var(--text-soft);
+    margin-bottom: 24px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+  .contact-cta-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── MODAL (Contact) ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.visible { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    border-radius: 24px;
+    padding: 32px 28px;
+    max-width: 440px;
+    width: 100%;
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    position: relative;
+  }
+  .modal-overlay.visible .modal { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { color: var(--text); border-color: var(--text); }
+
+  .modal h3 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .modal-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-row:hover { border-color: var(--accent); background: var(--card-hover); }
+  .contact-row .ic {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row .ic svg { width: 18px; height: 18px; }
+  .contact-row .info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .contact-row .info-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+  .contact-row .info-val { font-size: 14.5px; font-weight: 600; word-break: break-word; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  /* Subtle on-scroll reveal — armed only after JS sets html.js, gracefully
+     degrades for non-JS / crawler / print to "always visible". */
+  html.js .reveal > .section-head,
+  html.js .reveal > * {
+    will-change: opacity, transform;
+  }
+  html.js .reveal.is-pending {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero .hero-eyebrow { animation: fadeIn 0.6s ease both; }
+  .hero .hero-name { animation: fadeUp 0.7s ease 0.1s both; }
+  .hero .hero-role { animation: fadeUp 0.7s ease 0.25s both; }
+  .hero .hero-actions { animation: fadeUp 0.7s ease 0.4s both; }
+  .hero .stats { animation: fadeUp 0.7s ease 0.55s both; }
+  .hero-photo-wrap { animation: fadeIn 0.8s ease both; }
+
+  /* ── UTIL ── */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  a { color: inherit; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-decor"></div>
+
+<!-- TOP BAR (sticky) — version switcher hidden until 2+ versions exist -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#top" class="topbar-brand"><span class="dot"></span>David Girnstein</a>
+
+    <!-- To enable: change classList "version-switcher" to "version-switcher is-enabled"
+         and add more pills with data-version attributes. -->
+    <div class="version-switcher" id="versionSwitcher" aria-label="CV-Variante wählen">
+      <button class="version-pill active" data-version="tech-pm">Product / Tech</button>
+      <!-- Beispiel für später:
+      <button class="version-pill" data-version="creative">Creative</button>
+      <button class="version-pill" data-version="management">Management</button>
+      -->
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="top">
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-glow"></div>
+      <img class="hero-photo" src="assets/profile.jpg" alt="Foto von David Girnstein" loading="eager">
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow">Verfügbar für neue Rollen</span>
+      <h1 class="hero-name"><span class="hl">David</span> Girnstein</h1>
+      <p class="hero-role">
+        <strong>Product Manager</strong> mit Fokus auf <strong>Technologie & digitale Innovation</strong>.
+        Aktuell Product Manager bei der REWE Group · Founder eines NFC-Authentifizierungssystems · iOS/macOS App-Entwicklung.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="assets/DavidGirnstein_CV.pdf" download="DavidGirnstein_CV.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Lebenslauf (PDF)
+        </a>
+        <button class="btn btn-secondary" id="openContactBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          Kontakt speichern
+        </button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/davidgirnstein/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn btn-ghost" href="https://girnstein.studio" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Portfolio
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">450+</div>
+          <div class="stat-label">Gäste · Fashionshow Bootshaus</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">68</div>
+          <div class="stat-label">Crew geleitet · cross-funktional</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3+</div>
+          <div class="stat-label">Tech-Produkte (NFC, iOS, macOS)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1,5</div>
+          <div class="stat-label">B.A. Mediendesign & Management</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────── ABOUT ───────── -->
+  <section id="about" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Über mich</span>
+      <h2 class="section-title">Vom Konzept bis zum <span class="hl">Launch</span> — End-to-End.</h2>
+    </div>
+    <p class="about-text">
+      Mein Studium <strong>Mediendesign & Management</strong> habe ich mit Fokus auf das Management abgeschlossen. Heute arbeite ich als <strong>Produktmanager bei der REWE Group</strong> für die Bio-Eigenmarken-Range — und richte meinen Weg konsequent in Richtung <strong>Tech-Produktmanagement</strong> aus, weil mich digitale Produkte und Systeme deutlich stärker fesseln.
+    </p>
+    <p class="about-text">
+      Den kreativen und visuellen Background nutze ich heute als Werkzeug: Ich verstehe, <strong>was Nutzer:innen sehen wollen</strong>, wie Produkte sich anfühlen müssen, und wie man eine klare Markenidentität baut. Parallel habe ich aus eigener Initiative ein vollständiges <strong>NFC-Authentifizierungssystem</strong> mit AWS, Lambda, DynamoDB und AES-Kryptografie entwickelt — und zwei native Apps für iOS und macOS, von Konzept bis Code. Wenn ich eine Vision habe, baue ich sie auch.
+    </p>
+  </section>
+
+  <!-- ───────── PRODUCT & TECH EXPERIENCE ───────── -->
+  <section id="experience" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Product & Tech Experience</span>
+      <h2 class="section-title">Wo ich gerade <span class="hl">baue</span>.</h2>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Rewe -->
+      <article class="exp-card is-open">
+        <div class="exp-head" data-toggle>
+          <div class="exp-head-main">
+            <span class="exp-tag">Aktuelle Rolle</span>
+            <h3 class="exp-title">Product Manager — Private Label Packaging</h3>
+            <div class="exp-meta">
+              <strong>REWE Group</strong><span class="sep">·</span><span>Nov. 2025 — heute</span><span class="sep">·</span><span>Köln</span>
+            </div>
+          </div>
+          <div class="exp-toggle" aria-label="Details ein-/ausklappen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-body-inner">
+            <ul class="exp-bullets">
+              <li>Strategie und Entscheidungsfindung für die Eigenmarken-Produktlinie REWE Bio.</li>
+              <li>Koordination funktionsübergreifender Stakeholder aus internen Teams, externen Designagenturen und Lieferanten.</li>
+              <li>Verwaltung der Lieferantenkommunikation und Briefing-Zyklen für zeitkritische Produkteinführungen.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- NFC -->
+      <article class="exp-card">
+        <div class="exp-head" data-toggle>
+          <div class="exp-head-main">
+            <span class="exp-tag">Founder · Tech-Projekt</span>
+            <h3 class="exp-title">NFC Chip Verifikation & Management System</h3>
+            <div class="exp-meta">
+              <strong>Selbstständig</strong><span class="sep">·</span><span>Okt. 2025 — heute</span><span class="sep">·</span><span>Pilotphase mit Modedesignern</span>
+            </div>
+          </div>
+          <div class="exp-toggle" aria-label="Details ein-/ausklappen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-body-inner">
+            <ul class="exp-bullets">
+              <li>Vollständiges <strong>Full-Stack-NFC-Authentifizierungssystem</strong> zur physischen Produktverifizierung — entwickelt mit Schwerpunkt auf der Bekleidungsproduktion.</li>
+              <li>Implementierung von <strong>AES-Kryptografie auf NTAG 424 DNA-Chips</strong>: sichere Chip-Programmierung, vollständiger Verschlüsselungsmodus, markenspezifische Schlüsselverwaltung.</li>
+              <li>Backend auf <strong>AWS</strong> (Lambda, DynamoDB, API Gateway) — entschlüsselt die Chip-ID und routet zur passenden Produktseite. Echtheits-Check direkt aus der Markenseite einbindbar.</li>
+              <li>Eigenes Produktions-Dashboard für <strong>Chip-Beschriftung</strong>, Datenbankverwaltung, Echtzeit-Cloud-Verifizierung und Analytics (Scans, Verifikationen, Produktaufrufe).</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Apps -->
+      <article class="exp-card">
+        <div class="exp-head" data-toggle>
+          <div class="exp-head-main">
+            <span class="exp-tag">Founder · iOS / macOS</span>
+            <h3 class="exp-title">App Development — MONO & Office Shrimp</h3>
+            <div class="exp-meta">
+              <strong>Freelance</strong><span class="sep">·</span><span>Aug. 2025 — heute</span><span class="sep">·</span><span>AI-assisted coding</span>
+            </div>
+          </div>
+          <div class="exp-toggle" aria-label="Details ein-/ausklappen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-body-inner">
+            <div class="exp-subhead">MONO (iOS)</div>
+            <ul class="exp-bullets">
+              <li>Native iOS-Produktivitäts-App, fokussiert auf <em>eine Sache nach der anderen erledigen</em>.</li>
+              <li>Definition des <strong>gesamten Produktumfangs</strong>: Benutzerabläufe, Funktionsumfang, UI-Konzept, technische Architektur.</li>
+            </ul>
+            <div class="exp-subhead" style="margin-top:8px">Office Shrimp (macOS)</div>
+            <ul class="exp-bullets">
+              <li>Native macOS-Menüleisten-App für Erinnerungen zu Körperhaltung, Flüssigkeitszufuhr und Bildschirmzeit.</li>
+              <li>Differenzierungsmerkmal: <strong>Gamification im RPG-Stil</strong> — Nutzer:innen sammeln XP und verbessern ihren Shrimp-Charakter, statt klassisch ermahnt zu werden.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ───────── ADDITIONAL EXPERIENCE ───────── -->
+  <section id="additional" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Additional Experience</span>
+      <h2 class="section-title">Projekte & <span class="hl">Stationen</span>.</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Feb. — Juni 2025</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Producer & Project Lead — Fashionshow at Bootshaus</div>
+          <div class="timeline-org">Eigenes Großprojekt · Bachelorarbeit · <strong>Köln</strong></div>
+          <div class="timeline-desc">
+            Planung und Durchführung einer Modenschau im berühmten Bootshaus Köln mit über <strong>450 Gästen</strong> und <strong>11 Modedesigner:innen</strong>. Leitung eines funktionsübergreifenden Teams von <strong>68 Mitarbeitenden</strong> (Kreativität, Logistik, Technik, Produktion). Vollständige Verantwortung für GuV und Budget.
+            <br><br>
+            Berichtet in der RTL-Tagesschau: <a class="timeline-link" href="https://www.rtl.de/rtl-west/junger-student-bringt-digitale-fashionshow-ins-bootshaus-koeln-id4473418.html" target="_blank" rel="noopener">RTL West — „Junger Student bringt digitale Fashionshow ins Bootshaus Köln"</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Nov. 2024 — Okt. 2025</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Planung Post-Produktion</div>
+          <div class="timeline-org"><strong>WDR</strong></div>
+          <div class="timeline-desc">Planung von Ressourcen und Personal im Bereich Postproduktion.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Feb. — Okt. 2024</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Projektmanagement Nachhaltigkeitsbüro</div>
+          <div class="timeline-org"><strong>HS Fresenius Köln</strong></div>
+          <div class="timeline-desc">Planung und Umsetzung standortübergreifender Projekte. Budgetplanung, Ressourcenmanagement, Teamkoordination.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jan. 2022 — Mai 2023</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Senior Associate Graphic Designer</div>
+          <div class="timeline-org"><strong>Muydozo GmbH</strong> · vorher Junior Associate (Jan.–Apr. 22)</div>
+          <div class="timeline-desc">Planung und Umsetzung von Social-Media-Anzeigen. Kreative Umsetzung (Animation, 3D, Grafiken).</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ───────── SKILLS ───────── -->
+  <section id="skills" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Skills</span>
+      <h2 class="section-title">Was ich <span class="hl">mitbringe</span>.</h2>
+    </div>
+
+    <div class="skills">
+      <div class="skill-block">
+        <h3>Tech</h3>
+        <div class="skill-tags">
+          <span class="skill-tag tag-strong">AWS · Lambda · DynamoDB · API Gateway</span>
+          <span class="skill-tag tag-strong">NFC / RFID · NTAG 424 DNA</span>
+          <span class="skill-tag tag-strong">AES-Kryptografie</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Swift (iOS)</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Framer</span>
+          <span class="skill-tag">KI-gestützte Entwicklung (GPT, Claude)</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Product Management & Kreativ</h3>
+        <div class="skill-tags">
+          <span class="skill-tag tag-strong">Produkt-Roadmapping</span>
+          <span class="skill-tag tag-strong">Stakeholder-Management</span>
+          <span class="skill-tag">Agile / Scrum (Grundlagen)</span>
+          <span class="skill-tag">Cross-funktionale Teams</span>
+          <span class="skill-tag">Budgetplanung</span>
+          <span class="skill-tag">Markenidentität</span>
+          <span class="skill-tag">Adobe Creative Cloud</span>
+          <span class="skill-tag">3D-Tools</span>
+          <span class="skill-tag">Bewegungsgrafiken</span>
+          <span class="skill-tag">MS Office</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── EDUCATION ───────── -->
+  <section id="education" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Education</span>
+      <h2 class="section-title">Akademischer <span class="hl">Hintergrund</span>.</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <span class="info-card-meta">09.2022 — 09.2025</span>
+        <h3 class="info-card-title">B.A. Mediendesign & Management</h3>
+        <div class="info-card-org"><strong>Hochschule Fresenius Köln</strong></div>
+        <p class="info-card-text"><strong>Abschluss 1,5</strong> · Bachelorarbeit <strong>1,0</strong>: „Die Symbiose von physischer Mode und digitaler Innovation — Über die Potenziale mediengestützter Interaktion für das Konsumverhalten".</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-meta">2014 — 2021</span>
+        <h3 class="info-card-title">Abitur</h3>
+        <div class="info-card-org"><strong>Evangelisches Gymnasium Bad Marienberg</strong></div>
+        <p class="info-card-text">Leistungskurse: Mathe, Physik, Erdkunde.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── LEADERSHIP ───────── -->
+  <section id="leadership" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Leadership & Volunteering</span>
+      <h2 class="section-title">Verantwortung <span class="hl">übernommen</span>.</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <span class="info-card-meta">Seit März 2015</span>
+        <h3 class="info-card-title">Pfadfinderleitung</h3>
+        <div class="info-card-org"><strong>PdF Pfadfinder</strong></div>
+        <p class="info-card-text">2015–2021 Gruppenleitung mit wöchentlicher Planung und Ausflügen. Anschließend überregional/Bundesleitung — Planung von Events und Zeltlagern für bis zu <strong>400 Personen</strong>; viele Designs, Konzepte und Kommunikationsmittel für den gesamten Bund aus meiner Feder.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-meta">Seit Sep. 2023</span>
+        <h3 class="info-card-title">Ludwig Fresenius Talentnetzwerk</h3>
+        <div class="info-card-org"><strong>Hochschule Fresenius</strong></div>
+        <p class="info-card-text">Standortübergreifendes Talentprogramm: Coaching, exklusive Vorträge und Mitwirkung an Projekten.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-meta">Juni — Juli 2019</span>
+        <h3 class="info-card-title">Volunteer in Afrika & Amerika</h3>
+        <div class="info-card-org"><strong>Christ's Hope International / SDI International</strong></div>
+        <p class="info-card-text">Einsätze in Namibia, Südafrika und New Orleans: Reparaturen, Vor-Ort-Support und Wiederaufbau nach Schäden.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-meta">Auswahl</span>
+        <h3 class="info-card-title">Bachelorarbeit ausgezeichnet</h3>
+        <div class="info-card-org"><strong>Note 1,0</strong> — Symbiose physischer Mode & digitaler Innovation</div>
+        <p class="info-card-text">Direkter Vorläufer meines NFC-Authentifizierungssystems: Forschung zu mediengestützter Produkt-Interaktion mündete in ein produktiv lauffähiges System.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── CERTIFICATES ───────── -->
+  <section id="certs" class="reveal">
+    <div class="section-head">
+      <span class="section-eyebrow">Zertifikate & Bescheinigungen</span>
+      <h2 class="section-title">Weiterbildung & <span class="hl">Zertifikate</span>.</h2>
+    </div>
+
+    <div class="certs">
+      <div class="cert"><div class="cert-name">Google Project Management</div><div class="cert-issuer">Google · Coursera (7 Kurse)</div></div>
+      <div class="cert"><div class="cert-name">Inbound Marketing Certified</div><div class="cert-issuer">HubSpot Academy</div></div>
+      <div class="cert"><div class="cert-name">Zertifikat Talentnetzwerk</div><div class="cert-issuer">Hochschule Fresenius</div></div>
+      <div class="cert"><div class="cert-name">Grundlagen des Online-Marketings</div><div class="cert-issuer">Google</div></div>
+      <div class="cert"><div class="cert-name">Inside LVMH</div><div class="cert-issuer">LVMH</div></div>
+      <div class="cert"><div class="cert-name">Luxury Management Foundations</div><div class="cert-issuer">HSF International Business School</div></div>
+      <div class="cert"><div class="cert-name">Gründerkurs · Pioneer</div><div class="cert-issuer">Pioneer Lab</div></div>
+      <div class="cert"><div class="cert-name">AEC Disc-Potentialanalyse</div><div class="cert-issuer">Swiss Life</div></div>
+      <div class="cert"><div class="cert-name">Semestersprecher Zertifikat</div><div class="cert-issuer">AsTA Fresenius Köln</div></div>
+      <div class="cert"><div class="cert-name">MUYDOZO Arbeitszeugnis</div><div class="cert-issuer">MUYDOZO</div></div>
+      <div class="cert"><div class="cert-name">Bescheinigung Pfadfinder Ehrenamt</div><div class="cert-issuer">PdF Pfadfinder</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── CONTACT CTA ───────── -->
+  <section id="contact" class="reveal">
+    <div class="contact-cta">
+      <h2>Lass uns sprechen.</h2>
+      <p>Du hast eine spannende Product- oder Tech-Rolle? Schreib mir oder lade meinen Kontakt direkt herunter.</p>
+      <div class="contact-cta-actions">
+        <a class="btn btn-primary" href="mailto:david@girnstein.studio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          E-Mail schreiben
+        </a>
+        <button class="btn btn-secondary" id="openContactBtn2" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          Kontakt speichern
+        </button>
+        <a class="btn btn-ghost" href="tel:+491722967986">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Anrufen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> David Girnstein · Köln</div>
+      <div class="footer-links">
+        <a href="https://girnstein.studio" target="_blank" rel="noopener">girnstein.studio</a>
+        <a href="https://www.linkedin.com/in/davidgirnstein/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:david@girnstein.studio">E-Mail</a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ───────── CONTACT MODAL ───────── -->
+<div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+  <div class="modal">
+    <button class="modal-close" id="closeContactBtn" aria-label="Schließen">×</button>
+    <h3 id="contactTitle">Kontakt</h3>
+    <p class="modal-sub">Direkt anrufen, schreiben oder als vCard speichern.</p>
+
+    <div class="contact-list">
+      <a class="contact-row" href="tel:+491722967986">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span class="info">
+          <span class="info-label">Telefon</span>
+          <span class="info-val">+49 172 2967986</span>
+        </span>
+      </a>
+      <a class="contact-row" href="mailto:david@girnstein.studio">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <span class="info">
+          <span class="info-label">E-Mail</span>
+          <span class="info-val">david@girnstein.studio</span>
+        </span>
+      </a>
+      <a class="contact-row" href="https://www.linkedin.com/in/davidgirnstein/" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+        <span class="info">
+          <span class="info-label">LinkedIn</span>
+          <span class="info-val">linkedin.com/in/davidgirnstein</span>
+        </span>
+      </a>
+      <a class="contact-row" href="https://girnstein.studio" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <span class="info">
+          <span class="info-label">Portfolio</span>
+          <span class="info-val">girnstein.studio</span>
+        </span>
+      </a>
+    </div>
+
+    <a class="btn btn-primary" href="assets/DavidGirnstein.vcf" download="DavidGirnstein.vcf" style="width:100%">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Als Kontakt speichern (.vcf)
+    </a>
+  </div>
+</div>
+
+<script>
+  // Year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ── Expand / collapse experience cards ──
+  document.querySelectorAll('[data-toggle]').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('is-open');
+    });
+  });
+
+  // ── Contact modal ──
+  const modal = document.getElementById('contactModal');
+  const openModal = () => { modal.classList.add('visible'); document.body.style.overflow = 'hidden'; };
+  const closeModal = () => { modal.classList.remove('visible'); document.body.style.overflow = ''; };
+  document.getElementById('openContactBtn').addEventListener('click', openModal);
+  document.getElementById('openContactBtn2').addEventListener('click', openModal);
+  document.getElementById('closeContactBtn').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Reveal on scroll ──
+  // Strategy: hide only the sections that start *below* the viewport on page load.
+  // Anything already visible stays visible and is never animated, so the hero
+  // and first section don't flicker. Anything below gets a subtle fade-up as
+  // the user scrolls. Without JS, nothing is hidden — content always renders.
+  document.documentElement.classList.add('js');
+
+  const reveals = document.querySelectorAll('.reveal');
+  const vh = window.innerHeight;
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top > vh * 0.85) {
+      el.classList.add('is-pending');
+    }
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+  reveals.forEach(el => { if (el.classList.contains('is-pending')) io.observe(el); });
+
+  // ── CV-Version-Switcher (hidden until enabled) ──
+  // To activate later: add `is-enabled` class to #versionSwitcher and add more <button class="version-pill" data-version="…"> entries.
+  // The handler below already routes between sections by data-version.
+  document.querySelectorAll('.version-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.version-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const target = pill.dataset.version;
+      // Hook for later: load /versions/<target>.html via fetch, swap main, etc.
+      console.log('Switch CV version to:', target);
+    });
+  });
+</script>
+
+</body>
+</html>
